@@ -130,3 +130,5 @@ gem 'jsbundling-rails', '~> 1.0'
 gem 'solargraph', '~> 0.49.0'
 
 gem "ruby-openai"
+
+gem "importmap-rails", "~> 1.2"
