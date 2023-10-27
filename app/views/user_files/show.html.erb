@@ -1,1 +1,19 @@
-<h2 class="text-4xl font-extrabold dark:text-white"><%= @user_file.name %></h2>
+<h4 class="text-2xl m-4 font-bold dark:text-white">Repos Breadcrumb</h4>
+
+<div class="block w-90% p-4 m-4 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+    <div class="mb-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white"><%= @user_file.name%></div>
+    <div class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Programming Language: <%= @user_file.programming_language.capitalize%></div>
+    <div class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Path: <%= @user_file.path%></div>
+    <div class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Uploaded On: <%= @user_file.created_at.to_datetime.to_date%></div>
+</div>
+
+<div class="block w-90% p-4 m-4 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Source Code:</h5>
+    <div class="block w-90% p-4 m-4 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+        <p class="font-normal text-xl text-gray-700 dark:text-gray-400"><%= @file_content.gsub("\n", "<br/>").gsub("    ", "&emsp;").html_safe %></p>
+    </div>
+    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Questions:</h5>
+    <div class="block w-90% p-4 m-4 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+        <p class="font-normal text-gray-700 dark:text-gray-400">WIP</p>
+    </div>
+</div>
