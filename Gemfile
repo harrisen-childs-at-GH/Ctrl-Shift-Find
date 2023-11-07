@@ -95,7 +95,7 @@ gem 'pry', '~> 0.14.1'
 
 gem 'has_scope', '~> 0.8.0'
 
-gem 'view_component', '~> 2.48'
+gem "view_component"
 
 gem 'simple_form', '~> 5.1'
 

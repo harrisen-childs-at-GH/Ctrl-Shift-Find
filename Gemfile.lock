@@ -509,7 +509,7 @@ DEPENDENCIES
   tailwindcss-rails
   turbo-rails
   tzinfo-data
-  view_component (~> 2.48)
+  view_component
   web-console
   webdrivers
 
