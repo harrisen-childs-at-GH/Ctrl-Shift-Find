@@ -1,4 +1,6 @@
 class UserFilesController < ApplicationController
+  protect_from_forgery with: :null_session
+
   def index
   end
 
@@ -11,6 +13,10 @@ class UserFilesController < ApplicationController
   end
 
   def create
+  end
+
+  def ask_question
+    binding.pry
   end
 
   private
