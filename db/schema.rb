@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_26_051801) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_28_044153) do
   create_table "ai_gpt_model_requests", force: :cascade do |t|
     t.integer "status"
     t.string "prompt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_file_id"
+    t.string "question"
     t.index ["user_file_id"], name: "index_ai_gpt_model_requests_on_user_file_id"
   end
 

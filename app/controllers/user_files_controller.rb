@@ -16,7 +16,21 @@ class UserFilesController < ApplicationController
   end
 
   def ask_question
-    binding.pry
+    @user_file = UserFile.find(params[:user_file_id])
+    @question_text = params[:question_text]
+
+    Ai::QueryGptService.call(user_file: @user_file, prompt: @question_text) do |result|
+      result.success do |answer|
+        respond_to do |formats|
+          formats.turbo_stream do
+            redirect_to user_file_url(@user_file.id), notice: 'Answered!'
+          end
+        end
+      end
+      result.failure do
+        redirect_to user_file_url(@user_file.id), notice: 'There was an issue...'
+      end
+    end
   end
 
   private

@@ -18,7 +18,7 @@
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Ask a Question:</h5>
 
 
-                <form action="<%= user_file_ask_question_path(@user_file.id) %>" method="post">
+                <form action="<%= user_file_ask_question_path(@user_file.id, format: :turbo_stream) %>" method="post">
                     <label for="chat" class="sr-only">Your message</label>
                     <div class="flex items-center px-3 py-2 rounded-lg bg-gray-50 dark:bg-gray-700">
                         <textarea id="chat" name="question_text" rows="1" class="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Am I missing a semicolon..."></textarea>
@@ -33,35 +33,9 @@
 
             </div>
 
-            <div class="block w-50 p-4 m-4 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Previous Questions:</h5>
-                <% @user_file.gpt_model_requests.each do |request|%>
-                    <div class="grid mb-8 border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 md:mb-9 md:grid-cols-2">
-                        <figure class="flex flex-col items-center justify-start p-8 text-center bg-white border-b border-gray-200 rounded-t-lg md:rounded-t-none md:rounded-tl-lg md:border-r dark:bg-gray-800 dark:border-gray-700">
-                            <figcaption class="flex items-start justify-center space-x-3">
-                                <img class="rounded-full w-9 h-9" src="https://cdn-icons-png.flaticon.com/512/155/155556.png" alt="profile picture">
-                                <div class="flex flex-col space-y-0.5 font-medium dark:text-white text-left">
-                                    <div>You asked on: <%= request.created_at.to_date %></div>
-                                </div>
-                            </figcaption>  
-                            <blockquote class="max-w-2xl mx-auto mb-4 text-gray-500 lg:mb-8 dark:text-gray-400">
-                                <p class="my-4"><%= request.prompt %></p>
-                            </blockquote>  
-                        </figure>
-                        <figure class="flex flex-col items-center justify-start p-8 text-center bg-white border-b border-gray-200 rounded-tr-lg dark:bg-gray-800 dark:border-gray-700">
-                            <figcaption class="flex items-start justify-center space-x-3">
-                                <img class="rounded-full w-9 h-9" src="https://assets.stickpng.com/images/63c52af590250dd34bd6a9ab.png" alt="profile picture">
-                                <div class="flex flex-col space-y-0.5 font-medium dark:text-white text-left">
-                                    <div>ChatGPT's Solution</div>
-                                </div>
-                            </figcaption> 
-                            <blockquote class="max-w-2xl mx-auto mb-4 text-gray-500 lg:mb-8 dark:text-gray-400">
-                                <p class="my-4"><%= request.response.payload %></p>
-                            </blockquote>   
-                        </figure>
-                    </div>
-                <% end %>
-            </div>
+            <%= turbo_frame_tag "user_file_#{@user_file.id}_previous_questions" do %>
+                <%= render 'user_files/previous_question', user_file: @user_file %>
+            <% end %>
         </div>
     </div>
 </div>
